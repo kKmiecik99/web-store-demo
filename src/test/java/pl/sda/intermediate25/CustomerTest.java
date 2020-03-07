@@ -8,7 +8,7 @@ class CustomerTest {
 
     @Test
     void customer() {
-        Customer customer = new Customer();
-        System.out.println(customer);
+//        Customer customer = new Customer();
+//        System.out.println(customer);
     }
 }

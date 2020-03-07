@@ -1,5 +1,7 @@
 package pl.sda.intermediate25;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 
 public class Customer {
@@ -26,7 +28,7 @@ public class Customer {
 //        this.lastName = lastName;
 //        this.age = age;
 //        this.salary = BigDecimal.valueOf(Double.valueOf(salary));
-        this(firstName,lastName,age,Integer.valueOf(salary));
+        this(firstName, lastName, age, StringUtils.isBlank(salary) ? 0 : Integer.valueOf(salary.strip()));
     }
 
     public Customer(String firstName, String lastName, int age, int salary) {
