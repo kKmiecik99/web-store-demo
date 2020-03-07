@@ -16,8 +16,9 @@ class CustomerStatisticsTest {
         BigDecimal salary = BigDecimal.valueOf(3333);
 
         Map<BigDecimal, List<Customer>> salaryMap = CustomerStatistics.customerWithSalaryMap();
-        Assertions.assertEquals(expectedSize,salaryMap.get(salary).size());
+        Assertions.assertEquals(expectedSize, salaryMap.get(salary).size());
     }
+
     @Test
     void shouldProperlyGroupCustomersByNameAndSalary() {
         int expectedSize = 2;
@@ -28,13 +29,27 @@ class CustomerStatisticsTest {
         Integer counter = nameSalaryMap.get(name).get(salary);
         Assertions.assertEquals(expectedSize, counter);
     }
+
     @Test
     void shouldSortUniqueNamesDescending() {
         int expectedSize = 5;
         String expectedName = "Anna";
         List<String> namesList = CustomerStatistics.sortDistinctNamesDescending();
-        Assertions.assertEquals(expectedSize,namesList.size());
-        Assertions.assertEquals(expectedName,namesList.get(3));
+        Assertions.assertEquals(expectedSize, namesList.size());
+        Assertions.assertEquals(expectedName, namesList.get(3));
 
+    }
+
+    @Test
+    void shouldPartitionCustomerByAge() {
+        String expectedFirstName = "Adam";
+        String expectedLastName = "Madej";
+        List<Customer> customers = CustomerStatistics.adultMap().get(false);
+        boolean present = customers.stream()
+                .filter(e -> e.getFirstName().trim().equals(expectedFirstName))
+                .filter(e -> e.getLastName().trim().equals(expectedLastName))
+                .findAny()
+                .isPresent();
+        Assertions.assertTrue(present);
     }
 }

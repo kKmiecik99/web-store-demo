@@ -5,8 +5,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.stream;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.*;
 
 public class CustomerStatistics {
     private final static Customer[] people = new Customer[]{
@@ -127,5 +126,10 @@ public class CustomerStatistics {
                 .distinct()
                 .sorted((a,b) -> b.compareTo(a))
                 .collect(Collectors.toList());
+    }
+    //9. Napisz metodę, która zwróci mapę podzieloną na dwie kategorie (osoby pełnoletnie i niepełnoletnie) <pełnoletność, lista_osób>
+    static Map<Boolean,List<Customer>> adultMap() {
+        return stream(people)
+                .collect(partitioningBy(p -> p.getAge()>=18));
     }
 }
