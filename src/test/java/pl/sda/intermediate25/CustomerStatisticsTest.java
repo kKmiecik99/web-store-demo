@@ -28,4 +28,13 @@ class CustomerStatisticsTest {
         Integer counter = nameSalaryMap.get(name).get(salary);
         Assertions.assertEquals(expectedSize, counter);
     }
+    @Test
+    void shouldSortUniqueNamesDescending() {
+        int expectedSize = 5;
+        String expectedName = "Anna";
+        List<String> namesList = CustomerStatistics.sortDistinctNamesDescending();
+        Assertions.assertEquals(expectedSize,namesList.size());
+        Assertions.assertEquals(expectedName,namesList.get(3));
+
+    }
 }

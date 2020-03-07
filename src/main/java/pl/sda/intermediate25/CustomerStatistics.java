@@ -104,5 +104,28 @@ public class CustomerStatistics {
                 .collect(groupingBy(e -> e.getFirstName().trim(), groupingBy(p -> p.getSalary(), counting())));
     }
     //8. Napisz metodę, która zwróci kolekcję unikalnych imion posortowanych alfabetycznie, ale malejącej kolejności
-
+    static List<String> sortDistinctNamesDescending() {
+        Set<String> names = new HashSet<>();
+        for (Customer person : people) {
+            names.add(person.getFirstName().trim());
+        }
+        List<String> sortedNames = new ArrayList<>();
+        sortedNames.addAll(names);
+        Collections.sort(sortedNames, (a,b) -> b.compareTo(a));
+        return sortedNames;
+    }
+    static Set<String> sortDistinctNamesDescendingWithTreeSet() {
+        Set<String> names = new TreeSet<>((a,b) -> b.compareTo(a));
+        for (Customer person : people) {
+            names.add(person.getFirstName().trim());
+        }
+        return names;
+    }
+    static Collection<String> sortDistinctNamesDescendingWithStream() {
+        return stream(people)
+                .map(p -> p.getFirstName().trim())
+                .distinct()
+                .sorted((a,b) -> b.compareTo(a))
+                .collect(Collectors.toList());
+    }
 }
