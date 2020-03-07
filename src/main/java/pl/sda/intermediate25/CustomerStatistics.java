@@ -129,7 +129,8 @@ public class CustomerStatistics {
     }
     //9. Napisz metodę, która zwróci mapę podzieloną na dwie kategorie (osoby pełnoletnie i niepełnoletnie) <pełnoletność, lista_osób>
     static Map<Boolean,List<Customer>> adultMap() {
-        return stream(people)
-                .collect(partitioningBy(p -> p.getAge()>=18));
+        Map<Boolean, List<Customer>> collect = stream(people)
+                .collect(partitioningBy(p -> p.getAge() >= 18));
+        return collect;
     }
 }
