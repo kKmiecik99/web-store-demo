@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CategoryDao {
 
@@ -32,16 +33,28 @@ public class CategoryDao {
     }
 
     private List<Category> prepareCategories(){
+        AtomicInteger counterForId = new AtomicInteger(1);
         List<String> lines = readLinesFromFile();
         lines.stream()
-                .map(line -> buildCategory(line));
+                .map(line -> buildCategory(line,counterForId.getAndIncrement()));
         return null;
     }
 
-    private Object buildCategory(String line) {
-//        Category category=new Category();
+    private Object buildCategory(String line, int counter) {
+        Category category=Category.builder()
+                .id(counter)
+                .categoryName(line.trim())
+                .depth(spaceCounter(line))
+                .
+
 
         return null;
+    }
+
+    private Integer spaceCounter(String line) {
+        String[] split=line.split("\\S+");
+
+        return split[0].length();
     }
 
 

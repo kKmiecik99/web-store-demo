@@ -2,7 +2,12 @@ package pl.sda.intermediate25;
 
 import lombok.*;
 
-@Data
+@Setter
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Category {
 
     private Integer id;
