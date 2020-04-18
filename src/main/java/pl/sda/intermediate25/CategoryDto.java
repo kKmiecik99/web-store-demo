@@ -2,7 +2,6 @@ package pl.sda.intermediate25;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Builder
 @Getter
@@ -18,11 +17,17 @@ public class CategoryDto { //DTO: Data Transfer Object
                 .id(category.getId())
                 .categoryName(category.getCategoryName())
                 .parentId(category.getParentId())
+                .state(new CategoryState())
                 .build();
     }
 
     public void changeState(boolean open, boolean selected){
+        state.setOpen(open);
+        state.setSelected(selected);
+    }
 
+    public void open(){
+        state.setOpen(true);
     }
 
 }

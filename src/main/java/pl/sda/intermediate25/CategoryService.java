@@ -12,20 +12,25 @@ public class CategoryService {
         List<CategoryDto> categoryDtoList = categoryList.stream()
                 .map(category -> CategoryDto.toDto(category))
                 .collect(Collectors.toList());
-
-        return null;
+        markAsSelectedOrOpen(categoryName, categoryDtoList);
+        return categoryDtoList;
     }
 
-    public void addCategory(String categoryName) {
-    }
-
-    private void markAsSelectedOrOpen(String categoryName, List<CategoryDto> categoryDtos){
-        List<CategoryDto> matchedDtoList = categoryDtos.stream()
+    private void markAsSelectedOrOpen(String categoryName, List<CategoryDto> categoryDtos) {
+        categoryDtos.stream()
                 .filter(categoryDto -> categoryDto.getCategoryName().contains(categoryName))
-//                .peek(categoryDto -> categoryDto)
-                .collect(Collectors.toList());
+                .peek(categoryDto -> categoryDto.changeState(true, true))
+                .forEach(categoryDto -> markParentAsOpened(categoryDtos, categoryDto));
+    }
 
-
+    private void markParentAsOpened(List<CategoryDto> categoryDtos, CategoryDto category) {
+        if (category.getParentId() == null) {
+            return;
+        }
+        categoryDtos.stream()
+                .filter(categoryDto -> categoryDto.getId().equals(category.getParentId()))
+                .peek(categoryDto -> categoryDto.open())
+                .forEach(categoryDto -> markParentAsOpened(categoryDtos, categoryDto));
     }
 
 }
