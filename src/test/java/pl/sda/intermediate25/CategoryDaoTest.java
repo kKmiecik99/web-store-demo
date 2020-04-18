@@ -30,8 +30,6 @@ class CategoryDaoTest {
     void shouldProperlyPopulateParentIds2() {
         int expectedParentId = 4;
         int childId = 6;
-
-//        CategoryDao categoryDao = CategoryDao.getInstance();
         List<Category> categories = categoryDao.getCategories();
         Category category = categories.stream()
                 .filter(c -> c.getId().equals(childId))
@@ -40,4 +38,5 @@ class CategoryDaoTest {
 
         Assertions.assertEquals(expectedParentId, category.getParentId());
     }
+
 }
