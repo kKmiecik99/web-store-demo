@@ -2,8 +2,6 @@ package pl.sda.intermediate25;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.function.Function;
-
 public class ThreadsExample {
 
     @Test
@@ -27,7 +25,5 @@ public class ThreadsExample {
         thread1.start();
         thread2.start();
         thread3.start();
-
-
     }
 }
