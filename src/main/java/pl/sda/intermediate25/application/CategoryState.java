@@ -1,4 +1,4 @@
-package pl.sda.intermediate25;
+package pl.sda.intermediate25.application;
 
 import lombok.Getter;
 import lombok.Setter;

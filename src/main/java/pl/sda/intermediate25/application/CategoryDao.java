@@ -1,4 +1,4 @@
-package pl.sda.intermediate25;
+package pl.sda.intermediate25.application;
 
 import lombok.Getter;
 
@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;

@@ -3,6 +3,9 @@ package pl.sda.intermediate25;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import pl.sda.intermediate25.application.CategoryDto;
+import pl.sda.intermediate25.application.CategoryException;
+import pl.sda.intermediate25.application.CategoryService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,8 +58,6 @@ class CategoryServiceTest {
 
     @Test
     void shouldFindCategoryWithLowerCase(){
-
     }
-
 
 }

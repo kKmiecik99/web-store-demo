@@ -2,10 +2,10 @@ package pl.sda.intermediate25;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pl.sda.intermediate25.application.Category;
+import pl.sda.intermediate25.application.CategoryDao;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CategoryDaoTest {
 
