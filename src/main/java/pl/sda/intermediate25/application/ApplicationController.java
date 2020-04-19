@@ -17,7 +17,11 @@ public class ApplicationController {
     public void register(RegistrationDto registrationDto) {
         Map<String, String> validatedResultMap = registrationValidator.validateUserRegistration(registrationDto);
         if(validatedResultMap.isEmpty()){
-            registrationService.register(registrationDto);
+            try {
+                registrationService.register(registrationDto);
+            } catch (UserExistsException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

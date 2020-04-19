@@ -6,7 +6,12 @@ import java.util.UUID;
 
 public class RegistrationService {
 
-    public void register(RegistrationDto registrationDto) {
+    UserDao userDao = new UserDao();
+
+    public void register(RegistrationDto registrationDto) throws UserExistsException {
+        if (userDao.checkIfUserExists(registrationDto)) {
+            throw new UserExistsException(registrationDto.getEMail());
+        }
         User user = User.builder()
                 .uuid(UUID.randomUUID())
                 .firstName(registrationDto.getFirstName())
@@ -21,6 +26,7 @@ public class RegistrationService {
                 .phone(registrationDto.getPhone())
                 .build();
 
+        userDao.addUser(user);
 
     }
 }
