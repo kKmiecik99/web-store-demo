@@ -1,16 +1,21 @@
 package pl.sda.intermediate25.application;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
+import java.util.UUID;
+
 @Setter
-public class RegistrationDto {
+@Getter
+@Builder
+@AllArgsConstructor
+@RequiredArgsConstructor
+public class User {
 
+    private UUID uuid;
     private String firstName;
     private String lastName;
     private String eMail;
-    private String password;
+    private String passwordHash;
     private String city;
     private String country;
     private String zipCode;
